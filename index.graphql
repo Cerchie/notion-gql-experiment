@@ -1,0 +1,478 @@
+
+
+type Notion_Search_Root {
+  has_more: Boolean
+  next_cursor: JSON
+  object: String
+  results: [JSON]
+}
+
+type Notion_Annotations {
+  bold: Boolean
+  code: Boolean
+  color: String
+  italic: Boolean
+  strikethrough: Boolean
+  underline: Boolean
+}
+
+type Notion_Cover {
+  external: Notion_External
+  type: String
+}
+
+type Notion_External {
+  url: String
+}
+
+type Notion_File {
+  expiry_time: DateTime
+  url: String
+}
+
+type Notion_Icon {
+  file: Notion_File
+  type: String
+}
+
+type Notion_Properties {
+  title: Notion_Title
+}
+
+type Notion_Page_Root {
+  archived: Boolean
+  cover: Notion_Cover
+  created_by: Notion_CreatedBy
+  created_time: DateTime
+  icon: Notion_Icon
+  id: String
+  last_edited_by: Notion_LastEditedBy
+  last_edited_time: DateTime
+  object: String
+  parent: Notion_Parent
+  properties: Notion_Properties
+  url: String
+}
+
+type Notion_Title {
+  id: String
+  title: [Notion_Title1Entry]
+  type: String
+}
+
+type Notion_Title1Entry {
+  annotations: Notion_Annotations
+  href: JSON
+  plain_text: String
+  text: Notion_Text
+  type: String
+}
+
+type Notion_Person {
+  email: String
+}
+
+type Notion_Person_Root {
+  avatar_url: String
+  id: String
+  name: String
+  object: String
+  person: Notion_Person
+  type: String
+}
+
+type Notion_ChildPage {
+  title: String
+}
+
+type Notion_Block_Root {
+  archived: Boolean
+  child_page: Notion_ChildPage
+  created_by: Notion_CreatedBy
+  created_time: DateTime
+  has_children: Boolean
+  id: String
+  last_edited_by: Notion_LastEditedBy
+  last_edited_time: DateTime
+  object: String
+  type: String
+}
+
+type Notion_Created {
+  created_time: JSON
+  id: String
+  name: String
+  type: String
+}
+
+type Notion_CreatedBy {
+  id: String
+  object: String
+}
+
+type Notion_MultiSelect {
+  options: [JSON]
+}
+
+type Notion_Name {
+  id: String
+  name: String
+  title: JSON
+  type: String
+}
+
+type Notion_Parent {
+  type: String
+  workspace: Boolean
+}
+
+type Notion_Database_Properties {
+  Created: Notion_Created
+  Name: Notion_Name
+  Tags: Notion_Tags
+}
+
+type Notion_Database_Root {
+  archived: Boolean
+  cover: JSON
+  created_by: Notion_CreatedBy
+  created_time: DateTime
+  icon: JSON
+  id: String
+  last_edited_by: Notion_LastEditedBy
+  last_edited_time: DateTime
+  object: String
+  parent: Notion_Parent
+  properties: Notion_Database_Properties
+  title: [Notion_Title1Entry]
+  url: String
+}
+
+type Notion_Tags {
+  id: String
+  multi_select: Notion_MultiSelect
+  name: String
+  type: String
+}
+
+type Notion_Page_Created {
+  created_time: DateTime
+  id: String
+  type: String
+}
+
+type Notion_LastEditedBy {
+  id: String
+  object: String
+}
+
+type Notion_Create_Page_Name {
+  id: String
+  title: [Notion_TitleEntry]
+  type: String
+}
+
+type Notion_Create_Page_Parent {
+  database_id: String
+  type: String
+}
+
+type Notion_Page_Properties {
+  Created: Notion_Page_Created
+  Name: Notion_Create_Page_Name
+  Tags: Notion_Create_Page_Tags
+}
+
+type Notion_Create_Page_Root {
+  archived: Boolean
+  cover: JSON
+  created_by: Notion_CreatedBy
+  created_time: DateTime
+  icon: JSON
+  id: String
+  last_edited_by: Notion_LastEditedBy
+  last_edited_time: DateTime
+  object: String
+  parent: Notion_Create_Page_Parent
+  properties: Notion_Page_Properties
+  url: String
+}
+
+type Notion_Create_Page_Tags {
+  id: String
+  multi_select: [JSON]
+  type: String
+}
+
+type Notion_Text {
+  content: String
+  link: JSON
+}
+
+type Notion_TitleEntry {
+  annotations: Notion_Annotations
+  href: JSON
+  plain_text: String
+  text: Notion_Text
+  type: String
+}
+
+type Stackexchange_Owner {
+  account_id: Int
+  display_name: String
+  link: String
+  profile_image: String
+  reputation: Int
+  user_id: Int
+  user_type: String
+}
+
+type Stackexchange_Item {
+  answer_id: Int
+  content_license: String
+  creation_date: Int
+  is_accepted: Boolean
+  last_activity_date: Int
+  owner: Stackexchange_Owner
+  question_id: Int
+  score: Int
+}
+
+type Stackexchange_Item_Root {
+  backoff: Int
+  has_more: Boolean
+  items: [Stackexchange_Item]
+  quota_max: Int
+  quota_remaining: Int
+}
+
+type Stackexchange_Answer_Root {
+  has_more: Boolean
+  items: [Stackexchange_Item]
+  quota_max: Int
+  quota_remaining: Int
+}
+
+type Stackexchange_Question_Item {
+  answer_count: Int
+  content_license: String
+  creation_date: Int
+  is_answered: Boolean
+  last_activity_date: Int
+  link: String
+  owner: Stackexchange_Owner
+  question_id: Int
+  score: Int
+  tags: [String]
+  title: String
+  view_count: Int
+}
+
+type Stackexchange_Questions_Root {
+  has_more: Boolean
+  items: [Stackexchange_Question_Item]
+  quota_max: Int
+  quota_remaining: Int
+}
+
+type Stackexchange_Search_Item {
+  answer_count: Int
+  content_license: String
+  creation_date: Int
+  is_answered: Boolean
+  last_activity_date: Int
+  link: String
+  owner: Stackexchange_Owner
+  question_id: Int
+  score: Int
+  tags: [String]
+  title: String
+  view_count: Int
+}
+
+type Stackexchange_Search_Root {
+  has_more: Boolean
+  items: [Stackexchange_Search_Item]
+  quota_max: Int
+  quota_remaining: Int
+}
+
+type Stackexchange_Tag_Item {
+  count: Int
+  has_synonyms: Boolean
+  is_moderator_only: Boolean
+  is_required: Boolean
+  name: String
+}
+
+type Stackexchange_Tag_Root {
+  has_more: Boolean
+  items: [Stackexchange_Tag_Item]
+  quota_max: Int
+  quota_remaining: Int
+}
+
+type Stackexchange_User_BadgeCounts {
+  bronze: Int
+  gold: Int
+  silver: Int
+}
+
+type Stackexchange_User_ExternalLink {
+  link: String
+  type: String
+}
+
+type Stackexchange_User_Collective6 {
+  description: String
+  external_links: [Stackexchange_User_ExternalLink]
+  link: String
+  name: String
+  slug: String
+  tags: [String]
+}
+
+type Stackexchange_User_Collective {
+  collective: Stackexchange_User_Collective6
+  role: String
+}
+
+type Stackexchange_User_Item {
+  accept_rate: Int
+  account_id: Int
+  badge_counts: Stackexchange_User_BadgeCounts
+  collectives: [Stackexchange_User_Collective]
+  creation_date: Int
+  display_name: String
+  is_employee: Boolean
+  last_access_date: Int
+  last_modified_date: Int
+  link: String
+  location: String
+  profile_image: String
+  reputation: Int
+  reputation_change_day: Int
+  reputation_change_month: Int
+  reputation_change_quarter: Int
+  reputation_change_week: Int
+  reputation_change_year: Int
+  user_id: Int
+  user_type: String
+  website_url: String
+}
+
+type Stackexchange_User_Root {
+  has_more: Boolean
+  items: [Stackexchange_User_Item]
+  quota_max: Int
+  quota_remaining: Int
+}
+
+type Query {
+  notion_search(
+    notion_authorization: Secret!
+    query: String
+  ): Notion_Search_Root
+    @rest(
+      method: POST
+      endpoint: "https://api.notion.com/v1/search"
+      headers: [
+        { name: "authorization", value: "Bearer $notion_authorization;" }
+        { name: "Content-Type", value: "application/json" }
+        { name: "notion-version", value: "2021-08-16" }
+      ]
+    )
+  notion_get_Page(
+    notion_authorization: Secret!
+    page_id: String!
+  ): Notion_Page_Root
+    @rest(
+      endpoint: "https://api.notion.com/v1/pages/$page_id"
+      headers: [
+        { name: "authorization", value: "Bearer $notion_authorization" }
+        { name: "notion-version", value: "2022-02-22" }
+      ]
+    )
+  notion_get_Person(
+    notion_authorization: Secret!
+    person_id: String!
+  ): Notion_Person_Root
+    @rest(
+      endpoint: "https://api.notion.com/v1/users/$person_id"
+      headers: [
+        { name: "accept", value: "application/json" }
+        { name: "authorization", value: "Bearer $notion_authorization" }
+        { name: "notion-version", value: "2022-02-22" }
+      ]
+    )
+  notion_get_Block(
+    notion_authorization: Secret!
+    block_id: String!
+  ): Notion_Block_Root
+    @rest(
+      endpoint: "https://api.notion.com/v1/blocks/$block_id"
+      headers: [
+        { name: "accept", value: "application/json" }
+        { name: "authorization", value: "Bearer $notion_authorization" }
+        { name: "notion-version", value: "2022-02-22" }
+      ]
+    )
+  notion_get_Database(
+    notion_authorization: Secret!
+    database_id: String!
+  ): Notion_Database_Root
+    @rest(
+      endpoint: "https://api.notion.com/v1/databases/$database_id"
+      headers: [
+        { name: "accept", value: "application/json" }
+        { name: "authorization", value: "Bearer $notion_authorization" }
+        { name: "notion-version", value: "2022-02-22" }
+      ]
+    )
+  notion_createPage(
+    notion_authorization: Secret!
+    parent: JSON
+    properties: JSON
+  ): Notion_Create_Page_Root
+    @rest(
+      method: POST
+      endpoint: "https://api.notion.com/v1/pages"
+      headers: [
+        { name: "accept", value: "application/json" }
+        { name: "authorization", value: "Bearer $notion_authorization" }
+        { name: "notion-version", value: "2022-02-22" }
+      ]
+    )
+  stackexchange_Item: Stackexchange_Item_Root
+    @rest(
+      endpoint: "https://api.stackexchange.com/2.3/answers?order=desc&sort=activity&site=stackoverflow"
+    )
+  stackexchange_Answer(answer_ids: String!): Stackexchange_Answer_Root
+    @rest(
+      endpoint: "https://api.stackexchange.com/2.3/answers/$answer_ids?site=stackoverflow"
+    )
+  stackexchange_Questions: Stackexchange_Questions_Root
+    @rest(
+      endpoint: "https://api.stackexchange.com/2.3/questions?order=desc&sort=activity&site=stackoverflow"
+    )
+  stackexchange_Question(question_ids: String!): Stackexchange_Questions_Root
+    @rest(
+      endpoint: "https://api.stackexchange.com/2.3/questions/$question_ids?order=desc&sort=activity&site=stackoverflow"
+    )
+  stackexchange_Search(tagged: String!): Stackexchange_Search_Root
+    @rest(
+      endpoint: "https://api.stackexchange.com/2.3/search?order=desc&sort=activity&site=stackoverflow&tagged=$tagged"
+    )
+  stackexchange_Tags: Stackexchange_Tag_Root
+    @rest(
+      endpoint: "https://api.stackexchange.com/2.3/tags?order=desc&sort=popular&site=stackoverflow"
+    )
+  stackexchange_Users: Stackexchange_User_Root
+    @rest(
+      endpoint: "https://api.stackexchange.com/2.3/users?order=desc&sort=reputation&site=stackoverflow"
+    )
+  stackexchange_User(user_ids: String!): Stackexchange_User_Root
+    @rest(
+      endpoint: "https://api.stackexchange.com/2.3/users/$user_ids?order=desc&sort=reputation&site=stackoverflow"
+    )
+}
